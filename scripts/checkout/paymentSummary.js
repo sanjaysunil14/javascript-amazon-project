@@ -6,6 +6,8 @@
  export function renderPaymentSummary(){
     let cart=getCart();
 
+    let quantityItem=0
+
     let productPriceCents=0;
 
     let shippingPriceCents=0;
@@ -16,6 +18,8 @@
 
         const deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
         shippingPriceCents+=deliveryOption.priceCents;
+
+        quantityItem+=1
 
     });
     const totalBeforeTaxCents=productPriceCents + shippingPriceCents;
@@ -30,7 +34,7 @@
           </div>
 
           <div class="payment-summary-row">
-            <div>Items (3):</div>
+            <div>Items (${quantityItem}):</div>
             <div class="payment-summary-money">
                 $${formatCurrency(productPriceCents)}
             </div>
